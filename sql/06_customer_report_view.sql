@@ -1,4 +1,4 @@
--- 04_customer_report_view.sql
+-- 06_customer_report_view.sql
 -- Customer Segmentation & Reporting View
 
 create view gold.report_customers as 
