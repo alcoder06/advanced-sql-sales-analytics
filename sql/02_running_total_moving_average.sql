@@ -1,0 +1,16 @@
+-- 02_running_total_moving_average.sql
+-- Running Total and Moving Average Analysis
+
+select  order_date,
+        total_sales,
+        sum(total_sales) over (order by order_date) as running_total_sales,
+        avg(avg_price) over (order by order_date) as moving_average 
+from
+(select 
+        Datetrunc(year, order_date) as order_date,
+        sum(sales_amount) as total_sales,
+        avg(price) as avg_price
+from gold.fact_sales
+where order_date is not null
+group by Datetrunc(year, order_date)
+) t
